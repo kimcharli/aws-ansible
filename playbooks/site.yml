@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - ec2_vpc_net_facts:
+        region: us-west-1
+      register: res_net_facts
+
+    - debug: var=res_net_facts
+
+
