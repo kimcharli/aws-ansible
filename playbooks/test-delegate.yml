@@ -1,0 +1,33 @@
+- hosts: infras
+  gather_facts: no
+  tasks:
+    - name: plain ansible_host
+      debug: msg="ansible_host = {{ ansible_host }}"
+
+#    - name: show testtag
+#      debug: msg="testtag = {{ testtag | default('Node') }}"
+
+#    - name: test with hosts
+#      hosts: master.0
+#      debug: msg="ansible_host = {{ ansible_host }}"
+
+    - name: test by delegate_to
+      delegate_to: "{{ groups['masters'][0] }}"
+      debug: msg="ansible_host = {{ ansible_host }}"
+
+#    - name: show the groups
+#      debug: msg="{{ group_names }}"
+
+    - name: test by role
+#      delegate_to: "{{ groups['masters'][0] }}"
+      include_role:
+        name: test_delegate
+      when: ansible_host == groups['infras'][0]
+
+
+#  - name: Configure the openshift master
+#    hosts: groups.masters.0
+#    include_role:
+#      name: contrail_master
+#      tasks_from: os_contrail_master.yaml
+#    when: "{{ ansible_default_ipv4['address'] in groups.masters.0 }}"

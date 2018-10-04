@@ -1,0 +1,12 @@
+- name: plain host in role
+  debug: msg="ansible_host = {{ ansible_host }}"
+
+- name: host in role by delegating
+  debug: msg="ansible_host = {{ ansible_host }}"
+  delegate_to: "{{ groups['masters'][0] }}"
+
+- block:
+    - name: in block
+      debug: msg="ansible_host = {{ ansible_host }}"
+
+  delegate_to: "{{ groups['masters'][0] }}"

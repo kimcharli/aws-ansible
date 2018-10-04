@@ -2,3 +2,21 @@
 
 AWS_REGION=us-west-1
 
+[infras]
+infra-1 testtag=infra-1
+infra-2 testtag=infra-2
+infra-3 testtag=infra-3
+
+[masters]
+master-1
+master-2
+master-3
+
+[nodes]
+infra-1 testtag=node-1
+infra-2 testtag=node-2
+infra-3 testtag=node-3
+master-1
+master-2
+master-3
+
